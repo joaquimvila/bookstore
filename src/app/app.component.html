@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>{{title}}</h1>
+  <div class="table-top-buttons">
+    <button (click)="addBook()">Add</button>
+  </div>
+  <app-item [class]="popUpClass" [book]="selectedBook" (save)="saveBook($event)" (delete)="deleteBook($event)"></app-item>
+  <div id="black-screen" [class]="blackScreenClass" (click)="dismissPopup()"></div>
+  <table>
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Title</td>
+        <td>Author</td>
+        <td>Description</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books$" (click)="showBook(book)">
+        <td>{{book.id}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

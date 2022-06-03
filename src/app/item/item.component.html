@@ -1,0 +1,17 @@
+<form [formGroup]="itemForm">
+  <label for="id">Id</label>
+  <input id="id" type="text" [readOnly]="true" formControlName="id" class="readonly"/>
+
+  <label for="title" [ngClass]="itemForm.controls['title'].invalid ? 'invalid' : ''" >Title</label>
+  <input id="title" type="text" formControlName="title"/>
+
+  <label for="author">Author</label>
+  <input id="author" type="text" formControlName="author"/>
+
+  <label for="description">Description</label>
+  <input id="description" type="text" formControlName="description"/>
+  <br/>
+  <button type="submit" [disabled]="!itemForm.valid" (click)="saveClicked()">Save</button>
+  <button type="submit" [disabled]="!itemForm.valid" (click)="deleteClicked()">Delete</button>
+
+</form>

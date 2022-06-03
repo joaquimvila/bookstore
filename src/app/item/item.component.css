@@ -1,0 +1,40 @@
+form {
+  padding: 2em;
+}
+
+label {
+  display: inline-block;
+  min-width: 120px;
+  width: 20%;
+}
+
+.invalid {
+  color: red;
+}
+
+input {
+  display: inline-block;
+  font-size: large;
+  margin-bottom: 1em;
+  min-width: 200px;
+  width: 60%;
+}
+
+.readonly {
+  background-color: lightgray;
+}
+
+button {
+  cursor: pointer;
+  display: inline-block;
+  font-size: large;
+}
+
+button:first-of-type{
+  margin-left: 50%;
+  transform: translateX(-100%);
+}
+
+button + button {
+  transform: translateX(-50%);
+}

@@ -1,0 +1,78 @@
+.container {
+  font-family: sans-serif;
+  margin: 1em auto;
+  width: 80%;
+}
+
+.table-top-buttons{
+  display: flex;
+  justify-content: flex-end;
+  margin: auto auto 0.5em auto;
+}
+
+.table-top-buttons button {
+  cursor: pointer;
+  font-size: large;
+  padding: 0.2em 2em;
+}
+
+.popupHidden{
+  display: none;
+}
+
+.popupShown{
+  background-color: white;
+  border: 1px solid gray;
+  display: block;
+  left: 50%;
+  min-width: 50%;
+  position: absolute;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+#black-screen.off{
+  display: none;
+}
+
+#black-screen.on{
+  background-color: black;
+  bottom: 0;
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead {
+  background-color: gray;
+  color: white;
+}
+
+thead td {
+  padding: 0.5em;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background-color: lightgray;
+}
+
+td {
+  border: 1px solid black;
+  padding: 0.3em;
+}

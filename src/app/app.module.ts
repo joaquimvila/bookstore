@@ -7,6 +7,10 @@ import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemoryDataService} from "./in-memory-data.service";
 import { ItemComponent } from './item/item.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {StoreModule} from "@ngrx/store";
+import {booksReducer} from "./state/books.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {BooksEffects} from "./state/books.effects";
 
 @NgModule({
   declarations: [
@@ -17,7 +21,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     BrowserModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {dataEncapsulation: false}),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({bookStore: booksReducer}),
+    EffectsModule.forRoot([BooksEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

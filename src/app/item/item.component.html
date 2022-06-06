@@ -12,6 +12,6 @@
   <input id="description" type="text" formControlName="description"/>
   <br/>
   <button type="submit" [disabled]="!itemForm.valid" (click)="saveClicked()">Save</button>
-  <button type="submit" [disabled]="!itemForm.valid" (click)="deleteClicked()">Delete</button>
+  <button type="submit" [disabled]="!itemForm.valid || itemForm.controls['id'].value == undefined" (click)="deleteClicked()">Delete</button>
 
 </form>

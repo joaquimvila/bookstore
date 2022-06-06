@@ -1,5 +1,11 @@
 import {Book} from "../book";
 
 export interface AppState {
-  books: ReadonlyArray<Book>;
+  bookStore: BookStore;
 }
+
+export interface BookStore {
+  books: ReadonlyArray<Book>;
+  selectedBook?: Book;
+}
+

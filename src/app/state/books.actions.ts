@@ -1,8 +1,22 @@
 import {createAction, props} from "@ngrx/store";
 import {Book} from "../book";
 
-export const getBooks = createAction("[BookList] Get Books", props<{ books: ReadonlyArray<Book> }>());
+const loadBooks = createAction("[BookList] Load Books");
 
-export const saveBook = createAction('[BookList] Save Book', props<{ book: Book}>());
+const booksLoaded = createAction("[BookList] Books Loaded", props<{ books: ReadonlyArray<Book> }>())
 
-export const deleteBook = createAction("[BookList] Delete Book", props<{id: number}>());
+const showBook = createAction("[BookList] Show Book", props<{book: Book}>());
+
+const newBook = createAction("[BookList] New Book");
+
+const saveBook = createAction("[BookList] Save Book", props<{ book: Book}>());
+
+const bookSaved = createAction("[BookList] Book Saved", props<{book: Book}>());
+
+const deleteBook = createAction("[BookList] Delete Book", props<{id: number}>());
+
+const bookDeleted = createAction("[BookList] Book Deleted", props<{ book: Book }>())
+
+export const BookStoreActions = {
+  loadBooks, booksLoaded, showBook, newBook, saveBook, bookSaved, deleteBook, bookDeleted
+}

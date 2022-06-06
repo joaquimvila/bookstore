@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import {Book} from "./book";
 import {BooksService} from "./books.service";
+import {Store} from "@ngrx/store";
+import {BookStoreActions} from "./state/books.actions";
+import {selectBooks, selectSelected} from "./state/books.selectors";
 
 @Component({
   selector: 'app-root',
@@ -9,36 +12,35 @@ import {BooksService} from "./books.service";
 })
 export class AppComponent {
   title = 'Bookstore';
-  books$: Book[] = [];
+  books$: ReadonlyArray<Book> = [];
   popUpClass = 'popupHidden';
   blackScreenClass = 'off';
   selectedBook?: Book | null;
+  message?: string;
 
   ngOnInit(): void{
-    this.getBooks();
+    this.loadBooks();
+    this.store.select(selectBooks).subscribe(books => this.books$ = books);
+    this.store.select(selectSelected).subscribe(book => this.selectedBook = book);
   }
 
-  getBooks(): void {
-    this.booksService.getBooks().subscribe(books => this.books$ = books);
+  loadBooks(): void {
+    this.store.dispatch(BookStoreActions.loadBooks());
   }
 
   addBook(): void {
-    this.selectedBook = null;
+    this.store.dispatch(BookStoreActions.newBook())
     this.showPopup();
   }
 
   saveBook(book: Book): void {
-    this.booksService.saveBook(book).subscribe(book => {
-      if(book != null) console.log(book.id + ' saved')
-    });
+    this.store.dispatch(BookStoreActions.saveBook({book}));
     this.dismissPopup();
-    this.getBooks();
   }
 
   deleteBook(bookId: number): void {
-    this.booksService.deleteBook(bookId).subscribe(book => console.log(book.id + " deleted"));
+    this.store.dispatch(BookStoreActions.deleteBook({id: bookId}));
     this.dismissPopup();
-    this.getBooks();
   }
 
   showPopup(): void {
@@ -52,10 +54,10 @@ export class AppComponent {
   }
 
   showBook(book: Book): void {
-    this.selectedBook = book;
+    this.store.dispatch(BookStoreActions.showBook({book}))
     this.showPopup();
   }
 
-  constructor(private booksService: BooksService) {
+  constructor(private booksService: BooksService, private store: Store) {
   }
 }

@@ -1,5 +1,5 @@
 import {AppState} from "./books.state";
-import {selectBooks, selectSelected} from "./books.selectors";
+import {Selector} from "./books.selectors";
 
 describe('Book Selectors', () => {
 
@@ -12,17 +12,18 @@ describe('Book Selectors', () => {
         {id: 4, title: "The Palace Papers", author: "Tina Brown", description: "This follow-up to “The Diana Chronicles” details how the royal family reinvented itself after the death of Princess Diana."},
         {id: 5, title: "This Will Not Pass", author: "Jonathan Martin; Alexander Burns", description: "Two New York Times correspondents chronicle the 2020 election and the first year of the Biden presidency."}
       ],
-      selectedBook: undefined
-    }
+      selectedBook: undefined,
+      showDetail: false
+    },
   }
 
   it('should get the books', () => {
-    const result = selectBooks.projector(initialState.bookStore);
+    const result = Selector.books.projector(initialState.bookStore);
     expect(result.length).toBe(5);
   });
 
   it('should get the selectedBook', () => {
-    const result = selectSelected.projector(initialState.bookStore);
+    const result = Selector.selectedBook.projector(initialState.bookStore);
     expect(result).toBeUndefined();
   });
 

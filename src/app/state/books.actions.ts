@@ -15,8 +15,10 @@ const bookSaved = createAction("[BookList] Book Saved", props<{book: Book}>());
 
 const deleteBook = createAction("[BookList] Delete Book", props<{id: number}>());
 
-const bookDeleted = createAction("[BookList] Book Deleted", props<{ book: Book }>())
+const bookDeleted = createAction("[BookList] Book Deleted", props<{ book: Book }>());
+
+const dismissPopup = createAction("[App] Dismiss Popup");
 
 export const BookStoreActions = {
-  loadBooks, booksLoaded, showBook, newBook, saveBook, bookSaved, deleteBook, bookDeleted
+  loadBooks, booksLoaded, showBook, newBook, saveBook, bookSaved, deleteBook, bookDeleted, dismissPopup
 }

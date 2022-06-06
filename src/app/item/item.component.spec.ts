@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ItemComponent } from './item.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {provideMockStore} from "@ngrx/store/testing";
 
 describe('ItemComponent', () => {
   let component: ItemComponent;
@@ -10,9 +10,9 @@ describe('ItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ ReactiveFormsModule, HttpClientModule ]
+      imports: [ ReactiveFormsModule ],
+      providers: [provideMockStore()]
     })
-    .compileComponents();
   });
 
   beforeEach(() => {

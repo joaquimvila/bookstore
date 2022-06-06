@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Book} from "./book";
 import {Store} from "@ngrx/store";
 import {BookStoreActions} from "./state/books.actions";
-import {selectBooks, selectSelected} from "./state/books.selectors";
+import {Selector} from "./state/books.selectors";
 
 @Component({
   selector: 'app-root',
@@ -14,13 +14,20 @@ export class AppComponent {
   books$: ReadonlyArray<Book> = [];
   popUpClass = 'popupHidden';
   blackScreenClass = 'off';
-  selectedBook?: Book | null;
+  selectedBook?: Book;
   message?: string;
+  showDetail = false;
 
   ngOnInit(): void{
     this.loadBooks();
-    this.store.select(selectBooks).subscribe(books => this.books$ = books);
-    this.store.select(selectSelected).subscribe(book => this.selectedBook = book);
+    this.store.select(Selector.books).subscribe(books => this.books$ = books);
+    this.store.select(Selector.selectedBook).subscribe(book => {
+      this.selectedBook = book;
+    });
+    this.store.select(Selector.showDetail).subscribe(showDetail => {
+      this.showDetail = showDetail;
+      showDetail ? this.showPopup() : this.hidePopup();
+    });
   }
 
   loadBooks(): void {
@@ -29,17 +36,10 @@ export class AppComponent {
 
   addBook(): void {
     this.store.dispatch(BookStoreActions.newBook())
-    this.showPopup();
   }
 
-  saveBook(book: Book): void {
-    this.store.dispatch(BookStoreActions.saveBook({book}));
-    this.dismissPopup();
-  }
-
-  deleteBook(bookId: number): void {
-    this.store.dispatch(BookStoreActions.deleteBook({id: bookId}));
-    this.dismissPopup();
+  dismissPopup(): void {
+    this.store.dispatch(BookStoreActions.dismissPopup())
   }
 
   showPopup(): void {
@@ -47,14 +47,13 @@ export class AppComponent {
     this.blackScreenClass = 'on';
   }
 
-  dismissPopup(): void {
+  hidePopup(): void {
     this.blackScreenClass = 'off';
     this.popUpClass = 'popupHidden';
   }
 
   showBook(book: Book): void {
     this.store.dispatch(BookStoreActions.showBook({book}))
-    this.showPopup();
   }
 
   constructor(private store: Store) {

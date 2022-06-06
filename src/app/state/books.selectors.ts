@@ -1,8 +1,14 @@
 import {createFeatureSelector, createSelector} from "@ngrx/store";
 import {BookStore} from "./books.state";
 
-export const selectBookStore = createFeatureSelector<BookStore>('bookStore');
+const bookStore = createFeatureSelector<BookStore>('bookStore');
 
-export const selectBooks = createSelector( selectBookStore, (bookStoreState => bookStoreState.books));
+const books = createSelector( bookStore, (bookStoreState => bookStoreState.books));
 
-export const selectSelected = createSelector(selectBookStore, (bookStoreState => bookStoreState.selectedBook));
+const selectedBook = createSelector(bookStore, (bookStoreState => bookStoreState.selectedBook));
+
+const showDetail = createSelector(bookStore, (bookStoreState => bookStoreState.showDetail));
+
+export const Selector = {
+  bookStore, books, selectedBook, showDetail
+}

@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {MockStore, provideMockStore} from "@ngrx/store/testing";
 import {AppState} from "./state/books.state";
-import {selectBooks} from "./state/books.selectors";
+import {Selector} from "./state/books.selectors";
 import {DefaultProjectorFn, MemoizedSelector} from "@ngrx/store";
 import {Book} from './book';
 
@@ -29,7 +29,7 @@ describe('AppComponent', () => {
     app = fixture.componentInstance;
     store = TestBed.inject(MockStore);
 
-    mockBooksSelector = store.overrideSelector(selectBooks, sampleBooks);
+    mockBooksSelector = store.overrideSelector(Selector.books, sampleBooks);
   });
 
   it('should create the app', () => {

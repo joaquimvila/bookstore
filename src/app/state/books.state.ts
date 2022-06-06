@@ -7,5 +7,6 @@ export interface AppState {
 export interface BookStore {
   books: ReadonlyArray<Book>;
   selectedBook?: Book;
+  showDetail: boolean;
 }
 

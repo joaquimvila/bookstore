@@ -3,7 +3,7 @@
   <div class="table-top-buttons">
     <button (click)="addBook()">Add</button>
   </div>
-  <app-item [class]="popUpClass" [book]="selectedBook" (save)="saveBook($event)" (delete)="deleteBook($event)"></app-item>
+  <app-item [class]="popUpClass" [book]="selectedBook"></app-item>
   <div id="black-screen" [class]="blackScreenClass" (click)="dismissPopup()"></div>
   <table>
     <thead>

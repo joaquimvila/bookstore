@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, Output, SimpleChange, SimpleChanges} from '@angular/core';
+import {Component, Input, SimpleChanges} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {BooksService} from "../books.service";
 import {Book} from "../book";
+import {Store} from "@ngrx/store";
+import {BookStoreActions} from "../state/books.actions";
 
 @Component({
   selector: 'app-item',
@@ -18,19 +19,17 @@ export class ItemComponent {
   });
   newBook = {id: null, title: '', author: '', description: ''};
 
-  @Input() book?: Book | null;
-  @Output() save = new EventEmitter<Book>();
-  @Output() delete = new EventEmitter<number>();
+  @Input() book?: Book | undefined;
 
-  constructor(private fb: FormBuilder, private bookService: BooksService) { }
+  constructor(private fb: FormBuilder, private store: Store) { }
 
   saveClicked(){
-    this.save.emit(this.itemForm.value);
+    this.store.dispatch(BookStoreActions.saveBook({book: this.itemForm.value}));
     this.itemForm.reset();
   }
 
   deleteClicked(){
-    this.delete.emit(this.book?.id);
+    this.book && this.store.dispatch(BookStoreActions.deleteBook({id: this.book.id}));
     this.itemForm.reset();
   }
 

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {Book} from "./book";
-import {BooksService} from "./books.service";
 import {Store} from "@ngrx/store";
 import {BookStoreActions} from "./state/books.actions";
 import {selectBooks, selectSelected} from "./state/books.selectors";
@@ -58,6 +57,6 @@ export class AppComponent {
     this.showPopup();
   }
 
-  constructor(private booksService: BooksService, private store: Store) {
+  constructor(private store: Store) {
   }
 }

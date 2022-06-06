@@ -1,12 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
+import {StoreModule} from "@ngrx/store";
+import {booksReducer} from "./state/books.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {BooksEffects} from "./state/books.effects";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        HttpClientModule
+        HttpClientModule,
+        StoreModule.forRoot({bookStore: booksReducer}),
+        EffectsModule.forRoot([BooksEffects])
       ],
       declarations: [
         AppComponent

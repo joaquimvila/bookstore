@@ -1,4 +1,4 @@
-import {fireEvent, render, screen} from "@testing-library/angular";
+import {render, screen} from "@testing-library/angular";
 import {AppComponent} from "./app.component";
 import {ItemComponent} from "./item/item.component";
 import {HttpClientModule} from "@angular/common/http";

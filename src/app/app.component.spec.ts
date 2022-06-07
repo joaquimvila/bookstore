@@ -15,13 +15,6 @@ const sampleBooks = [
   {id: 5, title: "This Will Not Pass", author: "Jonathan Martin; Alexander Burns", description: "Two New York Times correspondents chronicle the 2020 election and the first year of the Biden presidency."}
 ];
 
-const mockStoreConfig = {
-  initialState: { bookStore: { books: [], selectedBook: undefined, showDetail: false}},
-  selectors: [
-    { selector: Selector.books, value: [] },
-  ]
-}
-
 describe('AppComponent', () => {
 
   let fixture: ComponentFixture<AppComponent>;
@@ -72,6 +65,5 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     expect(app.hidePopup).withContext("showDetail = false").toHaveBeenCalled();
   });
-
 
 });

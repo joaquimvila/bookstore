@@ -14,7 +14,7 @@
         <td>Description</td>
       </tr>
     </thead>
-    <tbody>
+    <tbody data-testid="tbody">
       <tr *ngFor="let book of books$" (click)="showBook(book)">
         <td>{{book.id}}</td>
         <td>{{book.title}}</td>

@@ -27,4 +27,9 @@ describe('Book Selectors', () => {
     expect(result).toBeUndefined();
   });
 
+  it('should get the showDetail', () => {
+    const result = Selector.showDetail.projector(initialState.bookStore);
+    expect(result).toBe(false);
+  });
+
 });

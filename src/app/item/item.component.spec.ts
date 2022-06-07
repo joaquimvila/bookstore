@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ItemComponent } from './item.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {provideMockStore} from "@ngrx/store/testing";
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 
 describe('ItemComponent', () => {
   let component: ItemComponent;
@@ -11,7 +12,8 @@ describe('ItemComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ ReactiveFormsModule ],
-      providers: [provideMockStore()]
+      providers: [provideMockStore()],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
   });
 

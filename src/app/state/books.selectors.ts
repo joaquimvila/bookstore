@@ -9,6 +9,10 @@ const selectedBook = createSelector(bookStore, (bookStoreState => bookStoreState
 
 const showDetail = createSelector(bookStore, (bookStoreState => bookStoreState.showDetail));
 
+const booksCount = createSelector(bookStore, (bookStoreState => bookStoreState.books.length));
+
+const booksTitles = createSelector(bookStore, (bookStoreState => bookStoreState.books.map(b => b.title)));
+
 export const Selector = {
-  bookStore, books, selectedBook, showDetail
+  bookStore, books, selectedBook, showDetail, booksCount, booksTitles
 }

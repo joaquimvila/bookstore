@@ -15,6 +15,7 @@ describe('Book Selectors', () => {
     showDetail: false
   };
 
+  // DON'T DO THESE TESTS
   it('should get the books', () => {
     const result = Selector.books.projector(initialBookStore);
     expect(result.length).toBe(5);
@@ -30,6 +31,8 @@ describe('Book Selectors', () => {
     expect(result).toBe(false);
   });
 
+
+  // DO THESE ONES!
   it('should get the books count', () => {
     const result = Selector.booksCount.projector(initialBookStore);
     expect(result).toBe(5);
@@ -46,5 +49,17 @@ describe('Book Selectors', () => {
     const result = Selector.booksCount.projector(updatedBookStore);
     expect(result).toBe(6);
   });
+
+  it('should get the books titles', () => {
+    const result = Selector.booksTitles.projector(initialBookStore);
+    expect(result).toEqual([
+      "Finding Me",
+      "Killing the Killers",
+      "A Sacred Oath",
+      "The Palace Papers",
+      "This Will Not Pass"
+    ]);
+  });
+
 
 });
